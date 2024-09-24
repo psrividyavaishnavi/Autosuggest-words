@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autocorrect System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: #e0f7fa;
+            color: #333;
+        }
+        h1 {
+            color: #00796b;
+            font-weight: bold;
+        }
+        .form-group label {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        .btn-primary {
+            background-color: #00796b;
+            border-color: #00796b;
+        }
+        .btn-primary:hover {
+            background-color: #004d40;
+            border-color: #004d40;
+        }
+        .suggestions-table {
+            background-color: #ffffff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .suggestions-table th, .suggestions-table td {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5">
+        <!-- Title Section -->
+        <div class="text-center">
+            <h1 class="mb-4">Enter a word to generate suggestions!</h1>
+        </div>
+
+        <!-- Form Section -->
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form method="POST" action="/suggest" class="p-4 border rounded bg-white">
+                    <div class="form-group">
+                        <label for="keyword">Enter a word:</label>
+                        <input type="text" class="form-control" id="keyword" name="keyword" placeholder="Type a word..." required>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-lg px-4">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Suggestions Table Section -->
+        <div id="suggestions" class="mt-5">
+            {% if suggestions %}
+            <div class="table-responsive">
+                <table class="table table-striped table-hover suggestions-table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Suggested Word</th>
+                            <th>Similarity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for suggestion in suggestions %}
+                        <tr>
+                            <td>{{ suggestion['Word'] }}</td>
+                            <td>{{ suggestion['Similarity'] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Bootstrap and jQuery (optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
