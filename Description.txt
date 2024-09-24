@@ -1,0 +1,8 @@
+•  Form Method: The form uses the POST method, meaning when the user submits the form, it sends the input data to the server via a POST request.
+1.	•  name="keyword": This is crucial because Flask uses the name attribute to identify and access the input data. The user’s input is collected from the input field with this name (keyword). User enters a word in the form field (with name="keyword").
+2.	Form is submitted, triggering a POST request to the /suggest route.
+3.	Flask's request.form['keyword'] captures the input from the form.
+4.	The backend processes the input (calculates similarity).
+5.	Suggestions are returned to the HTML page and displayed.
+This is how Flask communicates with the form and handles the user input. 
+
